@@ -12,5 +12,8 @@ namespace Snake_Game
         // defining display configurations, this will alter screen dimensions of the game
         public static uint SCREEN_HEIGHT = 960;
         public static uint SCREEN_WIDTH = 1280;
+        public static uint FRAME_RATE = 60;
+        public static int PIXEL_HEIGHT = 20;
+        public static int PIXEL_WIDTH = 20;
     }
 }
