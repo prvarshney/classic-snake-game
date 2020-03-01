@@ -40,14 +40,6 @@ namespace Snake_Game
             section.Position = new Vector2f(85, 150);
             section.FillColor = Color.Cyan;
 
-            // font to print scores on scoreboard
-            Text txt = new Text("", new Font(Config.HELVETICA_FONT), 30);
-            txt.Color = Color.White;
-            txt.Position = new Vector2f(Config.SCREEN_WIDTH / 2 - 210, 50);
-
-            // fetching scores from files
-
-
             window.Draw(banner);
             window.Draw(section);
         }
