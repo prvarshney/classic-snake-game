@@ -17,7 +17,7 @@ namespace Snake_Game
         public static int PIXEL_WIDTH = 20;
         public static int UP = 0;
         public static int LEFT = 1;
-        public static int DOWN = 1;
+        public static int DOWN = 2;
         public static int RIGHT = 3;
         public static int NOT_DEFINE = 4;
         public static int MAX_LENGTH_OF_SNAKE = 500;

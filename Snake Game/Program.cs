@@ -34,6 +34,7 @@ namespace Snake_Game
             // ActivityNumber tells which activity is currently need to draw
             // for example : 0 -> MainMenu, 1 -> StartGame, 2 -> HighScore, 3 -> Quit
             int ActivityNumber = 0;
+            uint Frame_Rate = 60;
             // starting game loop, the game window is open till any closing event doesn't occurs in event stack
             while (window.IsOpen)
             {
@@ -41,7 +42,11 @@ namespace Snake_Game
                 window.DispatchEvents();
                 window.Clear(Color.Black);
 
-                switch( ActivityNumber)
+                // checking for escape key press
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Escape)) window.Close();
+
+                // 
+                switch ( ActivityNumber)
                 {
                     case 0:
                         // checking keypresses
@@ -54,8 +59,12 @@ namespace Snake_Game
                         break;
                     case 1:
                         // starting snake game
-                        uint Frame_Rate = 60;
                         window.SetFramerateLimit(Frame_Rate);
+                        if (Keyboard.IsKeyPressed(Keyboard.Key.Up)) snake.ChangeDirection(Config.UP);
+                        else if (Keyboard.IsKeyPressed(Keyboard.Key.Down)) snake.ChangeDirection(Config.DOWN);
+                        else if (Keyboard.IsKeyPressed(Keyboard.Key.Left)) snake.ChangeDirection(Config.LEFT);
+                        else if (Keyboard.IsKeyPressed(Keyboard.Key.Right)) snake.ChangeDirection(Config.RIGHT);
+                        else if (Keyboard.IsKeyPressed(Keyboard.Key.Escape)) ActivityNumber = 0;
                         snake.move();
                         snake.draw();
                         break;

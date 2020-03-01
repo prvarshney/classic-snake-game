@@ -20,7 +20,7 @@ namespace Snake_Game
         private int speed;
         private RenderWindow window;
         
-        public Snake(ref RenderWindow window,int length=3, int speed=1)
+        public Snake(ref RenderWindow window,int length=5, int speed=1)
         {
             // initialising private datamembers using constructor
             this.window = window;
@@ -53,10 +53,15 @@ namespace Snake_Game
             }
         }
 
-        public void changeDirection(int direction)
+        public void ChangeDirection(int direction)
         {
             this.OrderedDirection = direction;
         }
+
+		public void ChangeLength(int delta)
+		{
+			this.length = this.length + delta;
+		}
 
         public void move()
         {
