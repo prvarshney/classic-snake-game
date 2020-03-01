@@ -20,7 +20,7 @@ namespace Snake_Game
         private int speed;
         private RenderWindow window;
         
-        public Snake(ref RenderWindow window,int length=5, int speed=1)
+        public Snake(ref RenderWindow window,int length=3, int speed=1)
         {
             // initialising private datamembers using constructor
             this.window = window;
@@ -48,10 +48,134 @@ namespace Snake_Game
                 this.PixelPositions[i].X = ( this.PixelPositions[i].X + Config.SCREEN_WIDTH ) % Config.SCREEN_WIDTH;
                 this.PixelPositions[i].Y = ( this.PixelPositions[i].Y + Config.SCREEN_HEIGHT ) % Config.SCREEN_HEIGHT;
                 this.pixel.Position = this.PixelPositions[i];
-                Console.WriteLine(this.PixelPositions[i]);
                 this.pixel.FillColor = Color.White;
                 this.window.Draw(pixel);
             }
         }
+
+        public void changeDirection(int direction)
+        {
+            this.OrderedDirection = direction;
+        }
+
+        public void move()
+        {
+            Vector2f PositionOfHead = new Vector2f();
+            if ( this.CurrentDirection == Config.LEFT)
+            {
+                if ( this.OrderedDirection == Config.UP)
+                {
+                    PositionOfHead.Y = PixelPositions[0].Y - this.speed;
+                    PositionOfHead.X = PixelPositions[0].X;
+                    this.CurrentDirection = Config.UP;
+                }
+                if ( this.OrderedDirection == Config.DOWN)
+                {
+                    PositionOfHead.Y = PixelPositions[0].Y + this.speed;
+                    PositionOfHead.X = PixelPositions[0].X;
+                    this.CurrentDirection = Config.DOWN;
+                }
+                if ( this.OrderedDirection == Config.LEFT)
+                {
+                    PositionOfHead.Y = PixelPositions[0].Y;
+                    PositionOfHead.X = PixelPositions[0].X - this.speed;
+                    this.CurrentDirection = Config.LEFT;
+                }
+                if ( this.OrderedDirection == Config.NOT_DEFINE || this.OrderedDirection == Config.RIGHT)
+                {
+                    PositionOfHead.X = PixelPositions[0].X - this.speed;
+                    PositionOfHead.Y = PixelPositions[0].Y;
+                }
+            }
+
+			if ( this.CurrentDirection == Config.RIGHT)
+			{
+				if ( this.OrderedDirection == Config.UP )
+				{
+					PositionOfHead.Y = this.PixelPositions[0].Y - this.speed;
+					PositionOfHead.X = this.PixelPositions[0].X;
+					this.CurrentDirection = Config.UP;
+				}
+				if ( this.OrderedDirection == Config.DOWN )
+				{
+					PositionOfHead.Y = this.PixelPositions[0].Y + this.speed;
+					PositionOfHead.X = this.PixelPositions[0].X;
+					this.CurrentDirection = Config.DOWN;
+				}
+				if ( this.OrderedDirection == Config.RIGHT)
+				{
+					PositionOfHead.Y = this.PixelPositions[0].Y;
+					PositionOfHead.X = this.PixelPositions[0].X + this.speed;
+					this.CurrentDirection = Config.RIGHT;
+				}
+				if ( this.OrderedDirection == Config.NOT_DEFINE || this.OrderedDirection == Config.LEFT)
+				{
+					PositionOfHead.X = this.PixelPositions[0].X + this.speed;
+					PositionOfHead.Y = this.PixelPositions[0].Y;
+				}
+			}
+
+			if ( this.CurrentDirection == Config.DOWN )
+			{
+				if ( this.OrderedDirection == Config.RIGHT )
+				{
+					PositionOfHead.Y = this.PixelPositions[0].Y;
+					PositionOfHead.X = this.PixelPositions[0].X + this.speed;
+					this.CurrentDirection = Config.RIGHT;
+				}
+				if ( this.OrderedDirection == Config.LEFT )
+				{
+					PositionOfHead.Y = this.PixelPositions[0].Y;
+					PositionOfHead.X = this.PixelPositions[0].X - speed;
+					this.CurrentDirection = Config.LEFT;
+				}
+				if ( this.OrderedDirection == Config.DOWN )
+				{
+					PositionOfHead.Y = this.PixelPositions[0].Y + this.speed;
+					PositionOfHead.X = this.PixelPositions[0].X;
+					this.CurrentDirection = Config.DOWN;
+				}
+				if ( this.OrderedDirection == Config.NOT_DEFINE || this.OrderedDirection == Config.UP )
+				{
+					PositionOfHead.X = this.PixelPositions[0].X;
+					PositionOfHead.Y = this.PixelPositions[0].Y + this.speed;
+				}
+			}
+
+			if ( this.CurrentDirection == Config.UP )
+			{
+				if ( this.OrderedDirection == Config.UP)
+				{
+					PositionOfHead.Y = this.PixelPositions[0].Y - this.speed;
+					PositionOfHead.X = this.PixelPositions[0].X;
+					this.CurrentDirection = Config.UP;
+				}
+				if ( this.OrderedDirection == Config.LEFT )
+				{
+					PositionOfHead.Y = this.PixelPositions[0].Y;
+					PositionOfHead.X = this.PixelPositions[0].X - this.speed;
+					this.CurrentDirection = Config.LEFT;
+				}
+				if ( this.OrderedDirection == Config.RIGHT )
+				{
+					PositionOfHead.Y = this.PixelPositions[0].Y;
+					PositionOfHead.X = this.PixelPositions[0].X + this.speed;
+					this.CurrentDirection = Config.RIGHT;
+				}
+				if ( this.OrderedDirection == Config.NOT_DEFINE || this.OrderedDirection == Config.DOWN )
+				{
+					PositionOfHead.X = this.PixelPositions[0].X;
+					PositionOfHead.Y = this.PixelPositions[0].Y - this.speed;
+				}
+			}
+
+			this.OrderedDirection = Config.NOT_DEFINE;
+			for (int i = this.length - 1; i > 0; i--)
+			{
+				this.PixelPositions[i] = this.PixelPositions[i - 1];
+			}
+			this.PixelPositions[0] = PositionOfHead;
+
+		}
     }
 }

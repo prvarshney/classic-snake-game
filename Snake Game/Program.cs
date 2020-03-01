@@ -45,6 +45,7 @@ namespace Snake_Game
                 {
                     case 0:
                         // checking keypresses
+                        window.SetFramerateLimit(Config.FRAME_RATE);
                         if (Keyboard.IsKeyPressed(Keyboard.Key.Up)) menu.ChangeSelectionText(-1);
                         else if (Keyboard.IsKeyPressed(Keyboard.Key.Down)) menu.ChangeSelectionText(1);
                         else if (Keyboard.IsKeyPressed(Keyboard.Key.Return)) ActivityNumber = menu.CurrentSelection + 1;
@@ -53,6 +54,9 @@ namespace Snake_Game
                         break;
                     case 1:
                         // starting snake game
+                        uint Frame_Rate = 60;
+                        window.SetFramerateLimit(Frame_Rate);
+                        snake.move();
                         snake.draw();
                         break;
                     case 2:
