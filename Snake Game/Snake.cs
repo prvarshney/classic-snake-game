@@ -20,7 +20,7 @@ namespace Snake_Game
         private int speed;
         private RenderWindow window;
         
-        public Snake(ref RenderWindow window,int length=5, int speed=1)
+        public Snake(ref RenderWindow window,int length=5, int speed=3)
         {
             // initialising private datamembers using constructor
             this.window = window;
@@ -40,7 +40,27 @@ namespace Snake_Game
             }
         }
 
-        public void draw()
+		public Vector2f getPositionOfHead()
+		{
+			return this.PixelPositions[0];
+		}
+
+		public bool isSnakeEatsItself()
+		{
+			//here rectangular blocks denoted by pixels are overlaped on each other due to speed < PIXEL_WIDTH
+			//so PIXEL_WIDTH/speed gives number of rectangular pixels
+			//in one block. We multiply it by 2 becoz head cannot be collidded with its next block
+			CollisionDetection collision = new CollisionDetection();
+			for (int i = 2 * (Config.PIXEL_WIDTH / this.speed); i < this.length; i++)
+			{
+				//Checking Whether Head Collides With Its Body or Not
+				if (collision.IsCollide( this.PixelPositions[0], this.PixelPositions[i]))
+					return true;
+			}
+			return false;
+		}
+
+		public void draw()
         {
             // drawing snake body over window
             for (int i = 0; i < this.length; i++)
