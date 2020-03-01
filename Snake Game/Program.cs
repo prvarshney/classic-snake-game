@@ -31,13 +31,17 @@ namespace Snake_Game
             MainMenu menu = new MainMenu(ref window);
             Snake snake = new Snake(ref window);
             SnakeFood food = new SnakeFood(ref window);
+            Score score = new Score(ref window);
             CollisionDetection collision = new CollisionDetection();
+            Music BackgroundMusic = new Music(Config.BACKGROUND_MUSIC);
+            BackgroundMusic.Loop = true;
+            BackgroundMusic.Play();
+
 
             // ActivityNumber tells which activity is currently need to draw
             // for example : 0 -> MainMenu, 1 -> StartGame, 2 -> HighScore, 3 -> Quit
             int ActivityNumber = 0;
             uint Frame_Rate = 60;
-            bool FirstRun = true;
 
             // starting game loop, the game window is open till any closing event doesn't occurs in event stack
             while (window.IsOpen)
@@ -45,7 +49,6 @@ namespace Snake_Game
                 // processing events that occured after window gets opened
                 window.DispatchEvents();
                 window.Clear(Color.Black);
-
 
                 // 
                 switch ( ActivityNumber)
@@ -58,7 +61,6 @@ namespace Snake_Game
                         else if (Keyboard.IsKeyPressed(Keyboard.Key.Return)) ActivityNumber = menu.CurrentSelection + 1;
                         // drawing menu over window
                         menu.draw();
-                        FirstRun = true;
                         break;
                     case 1:
                         // starting snake game
@@ -97,6 +99,8 @@ namespace Snake_Game
                         break;
                     case 2:
                         // displaying high score
+                        if (Keyboard.IsKeyPressed(Keyboard.Key.Escape)) ActivityNumber = 0;
+                        score.Draw();
                         break;
                     case 3:
                         // quitting game window

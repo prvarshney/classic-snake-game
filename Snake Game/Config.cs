@@ -21,6 +21,8 @@ namespace Snake_Game
         public static int RIGHT = 3;
         public static int NOT_DEFINE = 4;
         public static int MAX_LENGTH_OF_SNAKE = 5000;
+        public static string SCORE_FILE = "scores.txt";
+        public static string BACKGROUND_MUSIC = "assets/music/Underground-Theme.ogg";
         public static string HELVETICA_FONT = "assets/fonts/Helvetica-Bold.ttf";
         public static string PAC_FONT = "assets/fonts/PAC-FONT.TTF";
         public static string ARCADE_CLASSIC_FONT = "assets/fonts/ARCADECLASSIC.TTF";
