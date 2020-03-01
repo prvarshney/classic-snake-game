@@ -10,6 +10,7 @@ using SFML.Window;
 
 namespace Snake_Game
 {
+    // 1. One or Menu from which user can select text
     class MainMenu
     {
         private Text banner;

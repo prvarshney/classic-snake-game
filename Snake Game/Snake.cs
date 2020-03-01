@@ -13,7 +13,8 @@ namespace Snake_Game
     class Snake
     {
         private RectangleShape pixel = new RectangleShape();
-        private Vector2f[] PixelPositions = new Vector2f[Config.MAX_LENGTH_OF_SNAKE];
+		// 8. Use of array(s)
+		private Vector2f[] PixelPositions = new Vector2f[Config.MAX_LENGTH_OF_SNAKE];
         private int CurrentDirection;
         private int OrderedDirection;
         private int length;

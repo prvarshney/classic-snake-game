@@ -36,7 +36,7 @@ namespace Snake_Game
             Music BackgroundMusic = new Music(Config.BACKGROUND_MUSIC);
             BackgroundMusic.Loop = true;
             BackgroundMusic.Play();
-
+            int ScoreCounter = 0;
 
             // ActivityNumber tells which activity is currently need to draw
             // for example : 0 -> MainMenu, 1 -> StartGame, 2 -> HighScore, 3 -> Quit
@@ -53,6 +53,7 @@ namespace Snake_Game
                 // 
                 switch ( ActivityNumber)
                 {
+                    // 7. Use of methods
                     case 0:
                         // checking keypresses
                         window.SetFramerateLimit(Config.FRAME_RATE);
@@ -75,6 +76,7 @@ namespace Snake_Game
                         if (collision.IsCollide(food.GetPosition(), snake.getPositionOfHead()))
                         {
                             snake.ChangeLength(10);
+                            ScoreCounter += 10;
                             Frame_Rate += 10;
                             Console.WriteLine(Frame_Rate);
                             food.RandomizeFoodPosition();
@@ -83,6 +85,8 @@ namespace Snake_Game
 
                         if (snake.isSnakeEatsItself())
                         {
+                            // 5. Writing Data to simple text file
+                            score.WriteScore(ScoreCounter);
                             Text GameOver = new Text("Game Over", new Font(Config.ARCADE_CLASSIC_FONT), 150);
                             GameOver.Position = new Vector2f(70, Config.SCREEN_HEIGHT / 2 - 150);
                             GameOver.FillColor = Color.Cyan;
